@@ -1,14 +1,18 @@
 package tn.esprit.kaddemproject.services;
 
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import tn.esprit.kaddemproject.dto.ContractDto;
 import tn.esprit.kaddemproject.entities.Contrat;
 import tn.esprit.kaddemproject.entities.Equipe;
 import tn.esprit.kaddemproject.entities.Etudiant;
 import tn.esprit.kaddemproject.generic.IGenericServiceImp;
+import tn.esprit.kaddemproject.mappers.ContractMapper;
 import tn.esprit.kaddemproject.repositories.ContratRepository;
 import tn.esprit.kaddemproject.repositories.EtudiantRepository;
 import tn.esprit.kaddemproject.util.HelperClass;
@@ -21,16 +25,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Transactional
 @Slf4j
 public class IContratServiceImp extends IGenericServiceImp<Contrat,Integer> implements IContratService{
 
     private final ContratRepository contratRepository;
-    private final EtudiantRepository etudiantRepository ;
+    private final EtudiantRepository etudiantRepository;
+
+
 
     @Override
-    public Contrat affectContratToEtudiant(Integer idContrat, String nomE, String prenomE) {
+    public ContractDto affectContratToEtudiant(Integer idContrat, String nomE, String prenomE) {
 
         Contrat contrat = this.retrieveById(idContrat);
         Etudiant etudiant = etudiantRepository.findByNomEAndPrenomE(nomE,prenomE);
@@ -50,7 +56,7 @@ public class IContratServiceImp extends IGenericServiceImp<Contrat,Integer> impl
 
         }
 
-        return null;
+        return ContractMapper.mapToContractDto(contrat);
     }
 
     @Override
