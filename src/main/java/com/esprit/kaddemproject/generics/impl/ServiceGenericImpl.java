@@ -1,6 +1,6 @@
 package com.esprit.kaddemproject.generics.impl;
 
-import com.esprit.kaddemproject.generics.GenericRepository;
+import com.esprit.kaddemproject.generics.RepositoryGeneric;
 import com.esprit.kaddemproject.generics.ServiceGeneric;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -9,7 +9,7 @@ import java.util.List;
 public class ServiceGenericImpl<T> implements ServiceGeneric<T> {
 
     @Autowired
-    protected GenericRepository<T> genericRepository;
+    protected RepositoryGeneric<T> genericRepository;
 
     @Override
     public List<T> findAll() throws Exception {
