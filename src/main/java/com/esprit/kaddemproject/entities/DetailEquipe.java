@@ -1,10 +1,7 @@
 package com.esprit.kaddemproject.entities;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,4 +16,8 @@ public class DetailEquipe {
     private Integer idDetailEquipe;
     private Integer salle;
     private String thematique;
+
+    
+    @OneToOne()
+    private Equipe equipe;
 }

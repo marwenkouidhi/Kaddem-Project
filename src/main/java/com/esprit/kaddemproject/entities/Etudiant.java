@@ -1,12 +1,11 @@
 package com.esprit.kaddemproject.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -18,7 +17,14 @@ public class Etudiant {
     private Integer idEtudiant;
     private String prenomE;
     private String nomE;
-    private Option option;
+    @Enumerated(EnumType.STRING)
+    private Option optionE;
 
 
+    @OneToMany(mappedBy = "etudiant")
+    private List<Contract> contracts;
+    @ManyToOne
+    private Departement departement;
+    @ManyToMany(mappedBy = "etudiants")
+    private List<Equipe> equipes;
 }
