@@ -12,7 +12,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Contract {
+public class Contrat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idContract;
@@ -24,7 +24,7 @@ public class Contract {
     @Id
     private Integer montantContract;
 
-    
+
     @ManyToOne
     private Etudiant etudiant;
 }

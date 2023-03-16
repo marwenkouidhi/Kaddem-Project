@@ -1,7 +1,7 @@
 package com.esprit.kaddemproject.repositories;
 
-import com.esprit.kaddemproject.entities.Contract;
+import com.esprit.kaddemproject.entities.Contrat;
 import com.esprit.kaddemproject.generics.RepositoryGeneric;
 
-public interface ContractRepository extends RepositoryGeneric<Contract> {
+public interface ContractRepository extends RepositoryGeneric<Contrat> {
 }

@@ -22,7 +22,7 @@ public class Etudiant {
 
 
     @OneToMany(mappedBy = "etudiant")
-    private List<Contract> contracts;
+    private List<Contrat> contrats;
     @ManyToOne
     private Departement departement;
     @ManyToMany(mappedBy = "etudiants")
