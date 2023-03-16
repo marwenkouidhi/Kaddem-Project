@@ -1,4 +1,7 @@
 package com.esprit.kaddemproject.services;
 
-public interface DepartementService {
+import com.esprit.kaddemproject.entities.Departement;
+import com.esprit.kaddemproject.generics.ServiceGeneric;
+
+public interface DepartementService extends ServiceGeneric<Departement> {
 }

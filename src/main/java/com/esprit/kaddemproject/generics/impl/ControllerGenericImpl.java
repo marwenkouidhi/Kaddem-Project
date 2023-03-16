@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@SuppressWarnings({"unchecked", "rawtypes"})
 public class ControllerGenericImpl<T> implements ControllerGeneric<T> {
 
     @Autowired
