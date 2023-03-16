@@ -17,7 +17,6 @@ public class Departement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idDepart;
     private String nomDepart;
-
     
     @OneToMany(mappedBy = "departement")
     private List<Etudiant> etudiants;

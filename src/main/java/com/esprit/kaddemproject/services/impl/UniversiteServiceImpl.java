@@ -14,11 +14,13 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class UniversiteServiceImpl extends ServiceGenericImpl<Universite> implements UniversiteService {
     final DepartementService departementService;
+    final UniversiteRepository universiteRepository;
 
     public Universite assignDepartementToUniversite(Integer univId, Integer depId) {
         Universite universite = this.retrieveById(univId);
         Departement departement = departementService.retrieveById(depId);
         universite.getDepartements().add(departement);
+        universiteRepository.save(universite);
         return universite;
 
     }
