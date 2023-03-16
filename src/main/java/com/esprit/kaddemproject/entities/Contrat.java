@@ -2,9 +2,7 @@ package com.esprit.kaddemproject.entities;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
 
@@ -15,13 +13,13 @@ import java.util.Date;
 public class Contrat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter(AccessLevel.NONE)
     private Integer idContract;
     private Date dateDebutContract;
     private Date finDebutContract;
     @Enumerated(EnumType.STRING)
     private Specialite specialite;
     private boolean archive;
-    @Id
     private Integer montantContract;
 
 

@@ -8,45 +8,36 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @SuppressWarnings({"unchecked", "rawtypes"})
-@ResponseBody
 public class ControllerGenericImpl<T> implements ControllerGeneric<T> {
 
     @Autowired
     private ServiceGeneric<T> genericService;
 
-    @Override
-    @PostMapping
-    public ResponseEntity<Object> save(T entity) {
-        try {
-            return new ResponseEntity(genericService.save(entity), HttpStatus.OK);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ResponseEntity("Erro ao salvar!", HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @PostMapping()
+    public T add(@RequestBody T entity) {
+        return genericService.add(entity);
     }
 
-    @Override
-    @GetMapping
-    public ResponseEntity<T> findAll() {
-        try {
-            return new ResponseEntity(genericService.findAll(), HttpStatus.OK);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ResponseEntity("Erro ao buscar todos!", HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @PutMapping()
+    public T update(@RequestBody T entity) {
+        return genericService.update(entity);
     }
 
-    @Override
+    @GetMapping("/{id}")
+    public T retrieveById(@PathVariable Integer id) {
+        return genericService.retrieveById(id);
+    }
+
+    @GetMapping()
+    public List<T> retrieveAll() {
+        return genericService.retrieveAll();
+    }
+
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> delete(@PathVariable("id") Long id) {
-        try {
-            genericService.delete(id);
-            return new ResponseEntity("Sucesso ao apagar!", HttpStatus.OK);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ResponseEntity("Erro ao apagar!", HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public Boolean delete(@PathVariable Integer id) {
+        return genericService.delete(id);
     }
-
 }

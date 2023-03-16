@@ -7,34 +7,36 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 public class ServiceGenericImpl<T> implements ServiceGeneric<T> {
-
     @Autowired
-    protected RepositoryGeneric<T> genericRepository;
+    protected RepositoryGeneric<T> baseRepository;
 
     @Override
-    public List<T> findAll() throws Exception {
-        try {
-            return genericRepository.findAll();
-        } catch (Exception e) {
-            throw e;
-        }
+    public T add(T entity) {
+        return baseRepository.save(entity);
     }
 
     @Override
-    public T save(T entity) throws Exception {
-        try {
-            return genericRepository.save(entity);
-        } catch (Exception e) {
-            throw e;
-        }
+    public T update(T entity) {
+        return baseRepository.save(entity);
     }
 
     @Override
-    public void delete(Long id) throws Exception {
-        try {
-            genericRepository.deleteById(id);
-        } catch (Exception e) {
-            throw e;
+    public T retrieveById(Integer id) {
+        return baseRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public List<T> retrieveAll() {
+        return baseRepository.findAll();
+    }
+
+    @Override
+    public Boolean delete(Integer id) {
+        if (baseRepository.existsById(id)) {
+            baseRepository.deleteById(id);
+            return true;
+        } else {
+            return false;
         }
     }
 
