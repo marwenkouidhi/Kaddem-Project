@@ -19,4 +19,10 @@ public class EtudiantRestControllerImpl extends ControllerGenericImpl<Etudiant> 
     public List<Etudiant> retreiveEtudiantByNomeE(@PathVariable String nomE) {
         return etudiantService.retrieveByNomE(nomE);
     }
+
+    @Override
+    @PostMapping("/contrat/{idContrat}/equipe/{idEquipe}")
+    public Etudiant addAndAssignEtudiantToEquipeAndContract(@RequestBody Etudiant e, @PathVariable Integer idContrat, @PathVariable Integer idEquipe) {
+        return etudiantService.addAndAssignEtudiantToEquipeAndContract(e, idContrat, idEquipe);
+    }
 }

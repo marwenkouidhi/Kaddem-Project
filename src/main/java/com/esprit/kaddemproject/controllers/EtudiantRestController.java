@@ -8,4 +8,7 @@ import java.util.List;
 
 public interface EtudiantRestController extends ControllerGeneric<Etudiant> {
     public List<Etudiant> retreiveEtudiantByNomeE(@PathVariable String nomE);
+
+    public Etudiant addAndAssignEtudiantToEquipeAndContract(Etudiant e, Integer idContrat, Integer idEquipe);
+
 }

@@ -9,4 +9,6 @@ public interface EtudiantService extends ServiceGeneric<Etudiant> {
 
     public List<Etudiant> retrieveByNomE(String name);
 
+    public Etudiant addAndAssignEtudiantToEquipeAndContract(Etudiant e, Integer idContrat, Integer idEquipe);
+
 }
