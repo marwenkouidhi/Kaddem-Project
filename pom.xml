@@ -72,7 +72,6 @@
                 </configuration>
             </plugin>
         </plugins>
-        <finalName>KaddemProject</finalName>
     </build>
 
 </project>
