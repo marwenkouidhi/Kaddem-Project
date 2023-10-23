@@ -15,8 +15,8 @@ services:
       - mysql:/var/lib/mysql
       - $PWD/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
   spring_app:
-    container_name: kaddemProject
-    image: kaddemProject
+    container_name: kaddemproject
+    image: kaddemproject
     restart: on-failure
     build: .
     ports:
