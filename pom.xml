@@ -15,7 +15,7 @@
     <description>KaddemProject</description>
     <properties>
         <java.version>1.8</java.version>
-        <skipTests>true</skipTests>
+        <skipTests>false</skipTests>
     </properties>
     <dependencies>
         <dependency>
