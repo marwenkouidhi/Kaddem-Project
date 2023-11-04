@@ -60,7 +60,6 @@ class DepartementServiceImplTest {
         Departement retrievedDepartement = ds.retrieveById(id);
         Assertions.assertNotNull(retrievedDepartement);
     }
-<<<<<<< HEAD
     @Test
     @Order(4)
     public void testDeleteDepartement() {
@@ -69,7 +68,5 @@ class DepartementServiceImplTest {
         Assertions.assertTrue(isDeleted);
     }
 }
-=======
 
-}
->>>>>>> ffcdaf5a35010b54dd36866eca739fffff8b0f80
+
