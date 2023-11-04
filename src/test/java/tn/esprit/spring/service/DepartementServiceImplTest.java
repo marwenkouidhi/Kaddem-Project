@@ -59,4 +59,12 @@ class DepartementServiceImplTest {
         Departement retrievedDepartement = ds.retrieveById(id);
         Assertions.assertNotNull(retrievedDepartement);
     }
+    @Test
+@Order(4)
+public void testDeleteDepartement() {
+    // Replace 'id' with a valid Departement ID from your database
+        Integer id = 3;
+    Boolean isDeleted = ds.delete(id);
+    Assertions.assertTrue(isDeleted);
+}
 }
