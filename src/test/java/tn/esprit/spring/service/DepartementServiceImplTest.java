@@ -52,10 +52,11 @@ class DepartementServiceImplTest {
         Departement addedDepartement = ds.add(newDepartement);
         Assertions.assertNotNull(addedDepartement.getIdDepart());
     }
-@Test
-@Order(3)
-public void testRetrieveDepartementById() {
-    Departement retrievedDepartement = ds.retrieveById(1);
-    Assertions.assertNotNull(retrievedDepartement);
-}
+    @Test
+    @Order(3)
+    public void testRetrieveDepartementById() {
+        Integer id = 1;
+        Departement retrievedDepartement = ds.retrieveById(id);
+        Assertions.assertNotNull(retrievedDepartement);
+    }
 }
