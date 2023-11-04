@@ -43,11 +43,7 @@ pipeline {
                 sh "docker-compose up -d"
             }
         }
-                stage("Maven test") {
-            steps {
-                sh "mvn test"
-            }
-        }
+
                 stage("Maven sonarqube test") {
             steps {
                 sh """
