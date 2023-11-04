@@ -15,7 +15,6 @@
     <description>KaddemProject</description>
     <properties>
         <java.version>1.8</java.version>
-        <skipTests>false</skipTests>
     </properties>
     <dependencies>
         <dependency>
@@ -59,6 +58,7 @@
     </dependencies>
 
     <build>
+         <finalName>placeholder</finalName>
         <pluginManagement>
             <plugins>
                 <plugin>
