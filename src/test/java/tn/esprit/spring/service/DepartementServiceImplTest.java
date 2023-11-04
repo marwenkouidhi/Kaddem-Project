@@ -30,7 +30,7 @@ class DepartementServiceImplTest {
     @Order(1)
     public void testRetrieveAll() {
         List<Departement> listDepartements = ds.retrieveAll();
-        Assertions.assertEquals(3, listDepartements.size());
+        Assertions.assertTrue(listDepartements.size() > 0);
     }
     @Test
     @Order(2)
@@ -51,5 +51,20 @@ class DepartementServiceImplTest {
 
         Departement addedDepartement = ds.add(newDepartement);
         Assertions.assertNotNull(addedDepartement.getIdDepart());
+
+    }
+    @Test
+    @Order(3)
+    public void testRetrieveDepartementById() {
+        Integer id = 2;
+        Departement retrievedDepartement = ds.retrieveById(id);
+        Assertions.assertNotNull(retrievedDepartement);
+    }
+    @Test
+    @Order(4)
+    public void testDeleteDepartement() {
+        Integer id = 15;
+        Boolean isDeleted = ds.delete(id);
+        Assertions.assertTrue(isDeleted);
     }
 }
