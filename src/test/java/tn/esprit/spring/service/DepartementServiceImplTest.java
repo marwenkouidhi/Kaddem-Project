@@ -51,7 +51,11 @@ class DepartementServiceImplTest {
 
         Departement addedDepartement = ds.add(newDepartement);
         Assertions.assertNotNull(addedDepartement.getIdDepart());
+        Integer id = newDepartement.getIdDepart();
 
+        Boolean isDeleted = ds.delete(id);
+
+        Assertions.assertTrue(isDeleted);
     }
     @Test
     @Order(3)
@@ -60,13 +64,7 @@ class DepartementServiceImplTest {
         Departement retrievedDepartement = ds.retrieveById(id);
         Assertions.assertNotNull(retrievedDepartement);
     }
-    @Test
-    @Order(4)
-    public void testDeleteDepartement() {
-        Integer id = 20;
-        Boolean isDeleted = ds.delete(id);
-        Assertions.assertTrue(isDeleted);
-    }
+
 }
 
 
