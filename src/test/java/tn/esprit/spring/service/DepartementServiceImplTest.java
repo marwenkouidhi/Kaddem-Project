@@ -36,7 +36,7 @@ class DepartementServiceImplTest {
     @Order(2)
     public void testAddDepartement() {
         Departement newDepartement = new Departement();
-        newDepartement.setNomDepart("New Departement");
+        newDepartement.setNomDepart("Departement");
 
         // Create associated Etudiant entities if needed
         Etudiant etudiant1 = new Etudiant();
@@ -63,7 +63,7 @@ class DepartementServiceImplTest {
     @Test
     @Order(4)
     public void testDeleteDepartement() {
-        Integer id = 15;
+        Integer id = 20;
         Boolean isDeleted = ds.delete(id);
         Assertions.assertTrue(isDeleted);
     }
