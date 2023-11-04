@@ -63,7 +63,7 @@ class DepartementServiceImplTest {
 @Order(4)
 public void testDeleteDepartement() {
     // Replace 'id' with a valid Departement ID from your database
-        Integer id = 3;
+        Integer id = 4;
     Boolean isDeleted = ds.delete(id);
     Assertions.assertTrue(isDeleted);
 }
