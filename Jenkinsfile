@@ -13,16 +13,7 @@ pipeline {
                 sh "mvn clean package -DskipTests"
             }
         }
-        stage("Maven sonarqube") {
-            steps {
-                sh """
-                    mvn clean verify sonar:sonar -Dsonar.projectKey=SamiBenMechlia-Spring \
-                    -Dsonar.projectName='springboot-devops' \
-                    -Dsonar.host.url=http://localhost:9000 \
-                    -Dsonar.login=4871c0dbcde0932aeddc686ed9a2278f9a284759
-                """
-            }
-        }
+
    stage("Download Artifact from Nexus") {
             steps {
                 script {
