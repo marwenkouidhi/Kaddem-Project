@@ -52,4 +52,11 @@ class DepartementServiceImplTest {
         Departement addedDepartement = ds.add(newDepartement);
         Assertions.assertNotNull(addedDepartement.getIdDepart());
     }
+    @Test
+@Order(3)
+public void testDeleteDepartement() {
+    Integer id = 1;
+    Boolean isDeleted = ds.delete(id);
+    Assertions.assertTrue(isDeleted);
+}
 }
