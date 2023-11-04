@@ -55,7 +55,7 @@ class DepartementServiceImplTest {
     @Test
     @Order(3)
     public void testRetrieveDepartementById() {
-        Integer id = 1;
+        Integer id = 2;
         Departement retrievedDepartement = ds.retrieveById(id);
         Assertions.assertNotNull(retrievedDepartement);
     }
