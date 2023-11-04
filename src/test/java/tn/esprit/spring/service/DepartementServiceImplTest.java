@@ -30,7 +30,7 @@ class DepartementServiceImplTest {
     @Order(1)
     public void testRetrieveAll() {
         List<Departement> listDepartements = ds.retrieveAll();
-        Assertions.assertEquals(3, listDepartements.size());
+        Assertions.assertEquals(5, listDepartements.size());
     }
     @Test
     @Order(2)
