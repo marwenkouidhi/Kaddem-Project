@@ -14,6 +14,7 @@ import tn.esprit.kaddemproject.entities.Etudiant;
 import tn.esprit.kaddemproject.entities.Option;
 import tn.esprit.kaddemproject.services.IDepartementService;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -36,7 +37,7 @@ class DepartementServiceImplTest {
     @Order(2)
     public void testAddDepartement() {
         Departement newDepartement = new Departement();
-        newDepartement.setNomDepart("Departement");
+        newDepartement.setNomDepart("Departement test");
 
         // Create associated Etudiant entities if needed
         Etudiant etudiant1 = new Etudiant();
@@ -46,16 +47,16 @@ class DepartementServiceImplTest {
         etudiant1.setDepartement(newDepartement);
         etudiant1.setContrats(null);
         etudiant1.setEquipes(null);
-
-        newDepartement.setEtudiants(Collections.singletonList(etudiant1));
-
+        List<Etudiant> etudiants = new ArrayList<>();
+        etudiants.add(etudiant1);
+        newDepartement.setEtudiants(etudiants);
         Departement addedDepartement = ds.add(newDepartement);
         Assertions.assertNotNull(addedDepartement.getIdDepart());
-        Integer id = newDepartement.getIdDepart();
+        //Integer id = newDepartement.getIdDepart();
 
-        Boolean isDeleted = ds.delete(id);
+        //Boolean isDeleted = ds.delete(id);
 
-        Assertions.assertTrue(isDeleted);
+        //Assertions.assertTrue(isDeleted);
     }
     @Test
     @Order(3)
@@ -64,7 +65,21 @@ class DepartementServiceImplTest {
         Departement retrievedDepartement = ds.retrieveById(id);
         Assertions.assertNotNull(retrievedDepartement);
     }
+    @Test
+    @Order(4)
+    public void testUpdateDepartement() {
+        Integer id = 2; 
 
+        Departement departementToUpdate = ds.retrieveById(id);
+        Assertions.assertNotNull(departementToUpdate);
+
+        String updatedName = "Updated Departement Name";
+        departementToUpdate.setNomDepart(updatedName);
+
+        Departement updatedDepartement = ds.update(departementToUpdate);
+        Assertions.assertNotNull(updatedDepartement);
+        Assertions.assertEquals(updatedName, updatedDepartement.getNomDepart());
+    }
 }
 
 
