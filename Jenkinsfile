@@ -39,13 +39,15 @@ pipeline {
             }
         }
 
-stage("Push Docker Image to Nexus") {
-    steps {
-            sh "docker login -u admin -p nexus 192.168.33.10:8083"
-            sh "docker tag kaddem-image 192.168.33.10:8083/repository/docker-images-repo/kaddem-image:latest"
-            sh "docker push 192.168.33.10:8083/repository/docker-images-repo/kaddem-image:latest"
+        stage("Push Docker Image to Nexus") {
+            steps {
+                withDockerServer([uri: "http://192.168.33.10:8081"]) {
+                    sh "docker login -u admin -p nexus 192.168.33.10:8081"
+                    sh "docker tag kaddem-image http://192.168.33.10:8081/repository/docker-images-repo/kaddem-image:latest"
+                    sh "docker push kaddem-image http://192.168.33.10:8081/repository/docker-images-repo/kaddem-image:latest"
+                }
+            }
         }
-}
 
 
         stage("Start app and db") {
