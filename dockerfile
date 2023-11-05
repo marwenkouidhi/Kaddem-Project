@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk-alpine
+FROM maven:3.3-jdk-8
 
 RUN mvn dependency:get \
   -DremoteRepositories=http://192.168.56.11:8081/repository/maven-public/ \
