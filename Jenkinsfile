@@ -45,7 +45,6 @@ stage("Push Docker Image to Nexus") {
             sh "docker tag kaddem-image 192.168.33.10:8081/repository/docker-images-repo/kaddem-image:latest"
             sh "docker push 192.168.33.10:8081/repository/docker-images-repo/kaddem-image:latest"
         }
-    }
 }
 
 
