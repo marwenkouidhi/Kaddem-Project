@@ -9,3 +9,4 @@ RUN mvn dependency:get \
   -Ddest=./kaddem-api.jar
 
 ENTRYPOINT [ "java", "-jar", "./kaddem-api.jar" ]
+ 
