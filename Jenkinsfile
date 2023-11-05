@@ -38,6 +38,17 @@ pipeline {
                 sh "mvn deploy"
             }
         }
+
+        stage("Push Docker Image to Nexus") {
+            steps {
+                withDockerServer([uri: "http://192.168.33.10:8081/repository/docker-images-repo/"]) {
+                    sh "docker login -u admin -p nexus http://192.168.33.10:8081"
+                    sh "docker tag kaddem-image http://192.168.33.10:8081/repository/docker-images-repo/kaddem-image:latest"
+                    sh "docker push kaddem-image http://192.168.33.10:8081/repository/docker-images-repo/kaddem-image:latest"
+                }
+            }
+        }
+
         stage("Start app and db") {
             steps {
                 sh "docker-compose up -d"
