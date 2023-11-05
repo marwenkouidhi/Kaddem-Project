@@ -49,6 +49,7 @@ pipeline {
             }
         }
 
+
         stage("Start app and db") {
             steps {
                 sh "docker-compose up -d"
