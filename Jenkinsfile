@@ -48,13 +48,14 @@ pipeline {
                     sh "docker build -t samibenmechlia/kaddem-image:latest ."
             }
         }
-
+/*
         stage("Push image to Docker Hub") {
             steps {
                 sh "docker login -u='samibenmechlia' -p='213JMT4936'"
                 sh "docker push samibenmechlia/kaddem-image:latest"
             }
         }
+        */
         stage("Start app and db") {
             steps {
                 sh "docker-compose up -d"
