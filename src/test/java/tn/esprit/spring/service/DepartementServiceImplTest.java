@@ -39,7 +39,6 @@ class DepartementServiceImplTest {
         Departement newDepartement = new Departement();
         newDepartement.setNomDepart("Departement test");
 
-        // Create associated Etudiant entities if needed
         Etudiant etudiant1 = new Etudiant();
         etudiant1.setNomE("Etudiant nom");
         etudiant1.setPrenomE("Etudiant prenom");
@@ -52,11 +51,6 @@ class DepartementServiceImplTest {
         newDepartement.setEtudiants(etudiants);
         Departement addedDepartement = ds.add(newDepartement);
         Assertions.assertNotNull(addedDepartement.getIdDepart());
-        //Integer id = newDepartement.getIdDepart();
-
-        //Boolean isDeleted = ds.delete(id);
-
-        //Assertions.assertTrue(isDeleted);
     }
     @Test
     @Order(3)
@@ -79,6 +73,13 @@ class DepartementServiceImplTest {
         Departement updatedDepartement = ds.update(departementToUpdate);
         Assertions.assertNotNull(updatedDepartement);
         Assertions.assertEquals(updatedName, updatedDepartement.getNomDepart());
+    }
+    @Test
+    @Order(5)
+    public void deleteDepartement() {
+        Integer id = 4;
+        Boolean isDeleted = ds.delete(id);
+        Assertions.assertTrue(isDeleted);
     }
 }
 

@@ -7,13 +7,28 @@ pipeline {
                 git branch: 'SamiBenMechlia', url: 'https://github.com/marwenkouidhi/Kaddem-Project.git'
             }
         }
+
+        stage("Maven sonarqube") {
+            steps {
+                        sh """
+                            mvn sonar:sonar -Dsonar.projectKey=SamiBenMechlia-Spring \
+                            -Dsonar.projectName='springboot-devops' \
+                            -Dsonar.host.url=http://localhost:9000 \
+                            -Dsonar.login=4871c0dbcde0932aeddc686ed9a2278f9a284759
+                        """
+                    }
+                }
         stage("Build") {
             steps {
                 sh "mvn -version"
                 sh "mvn clean package -DskipTests"
             }
         }
-
+   stage("Deploy to nexus") {
+            steps {
+                    sh "mvn deploy -DskipTests"
+                    }
+                }
    stage("Download Artifact from Nexus") {
             steps {
                 script {
@@ -27,15 +42,22 @@ pipeline {
                 }
             }
         }
+
           stage("Build docker image") {
             steps {
                     sh "docker build -t kaddem-image ."
             }
         }
 
-        stage("Deploy to nexus") {
+        stage("Push image to Docker Hub") {
             steps {
-                sh "mvn deploy -DskipTests"
+                sh "docker login -u='samibenmechlia' -p='213JMT4936'"
+                sh "docker push samibenmechlia/kaddem-image:latest"
+            }
+        }
+        stage("Start app and db") {
+            steps {
+                sh "docker-compose up -d"
             }
         }
 
@@ -52,20 +74,12 @@ pipeline {
 
 */
 
-        stage("Start app and db") {
-            steps {
-                sh "docker-compose up -d"
-            }
-        }
 
-                stage("Maven sonarqube test") {
+
+
+                stage("JUnit/Mockito") {
             steps {
-                sh """
-                    mvn sonar:sonar -Dsonar.projectKey=SamiBenMechlia-Spring \
-                    -Dsonar.projectName='springboot-devops' \
-                    -Dsonar.host.url=http://localhost:9000 \
-                    -Dsonar.login=4871c0dbcde0932aeddc686ed9a2278f9a284759
-                """
+                sh "mvn test"
             }
         }
     }
