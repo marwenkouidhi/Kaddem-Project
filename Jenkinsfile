@@ -14,6 +14,12 @@ pipeline {
                 sh "mvn clean package -DskipTests"
             }
         }
+                    stage("JUnit/Mockito") {
+                    steps {
+                        sh "mvn test"
+                    }
+                }
+
    stage("Deploy to nexus") {
             steps {
                     sh "mvn deploy -DskipTests"
@@ -63,11 +69,6 @@ pipeline {
             }
         }
 */
-            stage("JUnit/Mockito") {
-            steps {
-                sh "mvn test"
-            }
-        }
 
         stage("Maven sonarqube") {
             steps {
