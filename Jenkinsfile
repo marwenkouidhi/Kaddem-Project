@@ -53,7 +53,6 @@ pipeline {
             steps {
                 sh "docker login -u='samibenmechlia' -p='213JMT4936'"
                 sh "docker push samibenmechlia/docker-image:latest"
-"
             }
         }
         stage("Start app and db") {
