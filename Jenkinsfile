@@ -39,7 +39,7 @@ pipeline {
             }
         }
 
-
+/*
         stage("Push Docker Image to Nexus") {
             steps {
                 withDockerServer([uri: "localhost:8082/repository/docker-images-repo/"]) {
@@ -50,7 +50,7 @@ pipeline {
             }
         }
 
-
+*/
 
         stage("Start app and db") {
             steps {
