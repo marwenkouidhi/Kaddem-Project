@@ -52,7 +52,8 @@ pipeline {
         stage("Push image to Docker Hub") {
             steps {
                 sh "docker login -u='samibenmechlia' -p='213JMT4936'"
-                sh "docker push kaddem-image:latest"
+                sh "docker tag kaddem-image:latest:tagkaddem docker-image:tagkaddem"
+                sh "docker push docker-image:tagkaddem"
             }
         }
         stage("Start app and db") {
