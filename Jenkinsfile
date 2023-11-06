@@ -35,7 +35,7 @@ pipeline {
 
         stage("Deploy to nexus") {
             steps {
-                sh "mvn deploy"
+                sh "mvn deploy -DskipTests"
             }
         }
 
@@ -57,7 +57,7 @@ pipeline {
                 sh "docker-compose up -d"
             }
         }
-/*
+
                 stage("Maven sonarqube test") {
             steps {
                 sh """
@@ -68,6 +68,5 @@ pipeline {
                 """
             }
         }
-        */
     }
 }
