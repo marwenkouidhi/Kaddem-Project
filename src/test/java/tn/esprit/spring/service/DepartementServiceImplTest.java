@@ -77,7 +77,7 @@ class DepartementServiceImplTest {
     @Test
     @Order(5)
     public void deleteDepartement() {
-        Integer id = 9;
+        Integer id = 10;
         Boolean isDeleted = ds.delete(id);
         Assertions.assertTrue(isDeleted);
     }
