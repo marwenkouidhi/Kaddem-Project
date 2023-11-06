@@ -71,15 +71,14 @@ pipeline {
                 }
             }
         }
-
 */
-               stage("JUnit/Mockito") {
+            stage("JUnit/Mockito") {
             steps {
                 sh "mvn test"
             }
         }
 
-        stage("Maven sonarqube") {
+        stage("Maven secondsonarqube") {
             steps {
                         sh """
                             mvn sonar:sonar -Dsonar.projectKey=SamiBenMechlia-Spring \
