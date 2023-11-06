@@ -52,7 +52,7 @@ pipeline {
         stage("Push image to Docker Hub") {
             steps {
                 sh "docker login -u='samibenmechlia' -p='213JMT4936'"
-                sh "docker push samibenmechlia/kaddem-image:latest"
+                sh "docker push kaddem-image:latest"
             }
         }
         stage("Start app and db") {
@@ -73,14 +73,21 @@ pipeline {
         }
 
 */
-
-
-
-
-                stage("JUnit/Mockito") {
+               stage("JUnit/Mockito") {
             steps {
                 sh "mvn test"
             }
         }
+
+        stage("Maven sonarqube") {
+            steps {
+                        sh """
+                            mvn sonar:sonar -Dsonar.projectKey=SamiBenMechlia-Spring \
+                            -Dsonar.projectName='springboot-devops' \
+                            -Dsonar.host.url=http://localhost:9000 \
+                            -Dsonar.login=4871c0dbcde0932aeddc686ed9a2278f9a284759
+                        """
+                    }
+                }
     }
 }
