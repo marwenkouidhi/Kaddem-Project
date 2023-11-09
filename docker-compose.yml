@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   kaddem-api:
-    image: kaddem-image
+    image: lazrakamine/kaddem-image
     container_name: projetkaddembackend
     restart: always
     ports:
