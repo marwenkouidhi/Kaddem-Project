@@ -43,7 +43,7 @@ public class OpenAPIConfig {
 	public GroupedOpenApi contractPublicApi() {
 		return GroupedOpenApi.builder()
 				.group("Only Contract Management API")
-				.pathsToMatch("/contract/**")
+				.pathsToMatch("/equipe/**")
 				.pathsToExclude("**")
 				.build();
 	}
@@ -53,7 +53,7 @@ public class OpenAPIConfig {
 		return GroupedOpenApi.builder()
 				.group("Other Management API")
 				.pathsToMatch("/**")
-				.pathsToExclude("/contract/**")
+				.pathsToExclude("/equipe/**")
 				.build();
 	}
 
