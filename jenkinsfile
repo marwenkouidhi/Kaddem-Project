@@ -1,0 +1,76 @@
+pipeline {
+
+    agent {
+        node {
+            label 'ubuntu-agent'
+        }
+    }
+    
+    stages {
+        stage ('GIT') {
+            steps {
+               echo "Getting Project from Git"; 
+                    git branch: "Yassine", 
+                    url: "git@github.com:marwenkouidhi/Kaddem-Project.git",
+                    credentialsId: "githubcredential";
+            }
+        }
+       
+        stage("Build Artifact") {
+            steps {
+                sh "chmod 777 ./mvnw && ./mvnw clean package -DskipTests"
+            }
+        }
+         stage('Maven Clean') {
+            steps {
+                // Run 'mvn clean' to clean the project
+                sh 'mvn clean'
+            }
+        }
+
+        stage('Maven Compile') {
+            steps {
+                // Run 'mvn compile' to compile the project
+                sh 'mvn compile'
+            }
+        }
+             stage('Maven SonarQube') {
+            steps {
+                script {
+                        sh " mvn sonar:sonar -Dsonar.projectKey=kaddem1  -Dsonar.host.url=http://192.168.56.11:9000/ -Dsonar.login=f312e4802a09dbcc78ebc4d6b5c401d648748544"
+            
+                }
+            }
+        }
+         stage('Deploy to Nexus') {
+             steps {
+                script {
+                    
+                    sh "mvn deploy -DskipTests"
+                }
+            }
+        }
+              
+        stage("Build docker image") {
+            steps {
+                sh "docker build -t kaddem-image ."
+            }
+        }
+         stage("Deploy docker image to Nexus") {
+            steps {
+                sh "docker login -u 'admin' -p 'admin' localhost:8082"
+                sh "docker tag kaddem-image localhost:8082/kaddem-image"
+                sh "docker push localhost:8082/kaddem-image"
+            }
+        }
+        
+        
+        stage("Run docker containers") {
+            steps {
+                sh "docker compose up -d"
+            }
+        }
+       
+    }
+ 
+}
