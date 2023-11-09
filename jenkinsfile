@@ -15,6 +15,12 @@ pipeline {
                     credentialsId: "credential-github";
             }
         }
+
+        stage('Tests UN') {
+            steps {
+                sh 'mvn test'
+            }
+        }
         stage("Build Artifact") {
             steps {
                 sh " mvn clean install"
@@ -48,6 +54,7 @@ pipeline {
         stage("Run docker containers") {
             steps {
                 sh "sudo docker compose up -d"
+                sh "sudo docker logs -f projetkaddembackend"
             }
         }
     }
