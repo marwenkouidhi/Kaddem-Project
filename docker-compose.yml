@@ -15,5 +15,15 @@ services:
       - 3306:3306
 
     environment:
-      MYSQL_DATABASE: kaddemProject
+      MYSQL_DATABASE: marwenkouidhi
       MYSQL_ALLOW_EMPTY_PASSWORD: yes
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:5.0
+    restart: always
+    ports:
+      - 8087:80
+    environment:
+      PMA_HOST: mysqldb
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
