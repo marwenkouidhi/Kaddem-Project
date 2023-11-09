@@ -1,0 +1,55 @@
+pipeline {
+
+    agent {
+        node {
+            label 'agent1'
+        }
+    }
+
+    stages {
+        stage ('GIT') {
+            steps {
+               echo "Getting Project from Git";
+                    git branch: "lazrak",
+                    url: "git@github.com:marwenkouidhi/Kaddem-Project.git",
+                    credentialsId: "credential-github";
+            }
+        }
+        stage("Build Artifact") {
+            steps {
+                sh " mvn clean install"
+            }
+        }
+        stage("SonarQube Test") {
+            steps {
+                sh "mvn sonar:sonar -Dsonar.projectKey=kaddem2 -Dsonar.host.url=http://192.168.33.10:9000 -Dsonar.login=e1e2fd67de9da27ed26ca765c4195f4903fd3d54"
+            }
+        }
+
+        stage("Deploy Artifact") {
+            steps {
+                sh "mvn deploy -e"
+            }
+        }
+
+        stage("Build docker image") {
+            steps {
+                sh "sudo docker build -t kaddem-image ."
+            }
+        }
+        stage('Deploy docker image ') {
+            steps {
+                sh "sudo docker login -u 'admin' -p 'admin' localhost:8082"
+                sh "sudo docker tag kaddem-image localhost:8082/kaddem-image"
+                sh "sudo docker push localhost:8082/kaddem-image"
+            }
+        }
+
+        stage("Run docker containers") {
+            steps {
+                sh "sudo docker compose up -d"
+            }
+        }
+    }
+
+}
