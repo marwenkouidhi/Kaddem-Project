@@ -15,6 +15,12 @@ pipeline {
                     credentialsId: "jenkins-private-key";
             }
         }
+
+       stage("Build Artifact") {
+            steps {
+                sh "mvn clean package -DskipTests"
+            }
+        }
         
         stage("Unit Testing") {
             steps {
@@ -28,11 +34,7 @@ pipeline {
             }
         }
         
-        stage("Build Artifact") {
-            steps {
-                sh "mvn clean package -DskipTests"
-            }
-        }
+ 
         
        stage("Deploy artifact to Nexus") {
                 steps {
