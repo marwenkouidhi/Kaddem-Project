@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage("checkout") {
             steps {
-                git branch: 'SamiBenMechlia', url: 'https://github.com/marwenkouidhi/Kaddem-Project.git'
+                git branch: 'SamiBenMechlia', url: 'git@github.com:marwenkouidhi/Kaddem-Project.git'
             }
         }
 
